@@ -1,0 +1,14 @@
+from rilz.client import Client
+from rilz.services.databases import Databases
+
+client = Client()
+client.set_endpoint('https://<REGION>.rilck.com/v1') # Your API Endpoint
+client.set_key('<YOUR_API_KEY>') # Your secret API key
+
+databases = Databases(client)
+
+result = databases.create_documents(
+    database_id = '<DATABASE_ID>',
+    collection_id = '<COLLECTION_ID>',
+    documents = []
+)
