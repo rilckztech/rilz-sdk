@@ -26,6 +26,9 @@ setuptools.setup(
   download_url='https://github.com/rilckztech/rilz-sdk/archive/11.0.1.tar.gz',
   install_requires=[
     'requests',
+    'loguru',
+    'webdriver-manager',
+    'selenium',
   ],
   classifiers=[
     'Development Status :: 5 - Production/Stable',
