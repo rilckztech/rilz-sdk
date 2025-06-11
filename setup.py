@@ -10,10 +10,10 @@ setuptools.setup(
   packages = [
     'rilz',
     'rilz/services',
-    'rilz/vault',
-    'rilz/browser',
     'rilz/encoders',
     'rilz/enums',
+    'rilz/vault',
+    'rilz/browser',
   ],
   version = '11.0.7',
   license='BSD-3-Clause',
