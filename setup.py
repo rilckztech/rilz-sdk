@@ -15,7 +15,7 @@ setuptools.setup(
     'rilz/encoders',
     'rilz/enums',
   ],
-  version = '11.0.6',
+  version = '11.0.7',
   license='BSD-3-Clause',
   description = 'Rilz is an open-source self-hosted backend server that abstract and simplify complex and repetitive development tasks behind a very simple REST API',
   long_description = long_description,
@@ -25,7 +25,7 @@ setuptools.setup(
   maintainer = 'Rilz Team',
   maintainer_email = 'team@rilck.com',
   url = 'https://rilck.com/support',
-  download_url='https://github.com/rilckztech/rilz-sdk/archive/11.0.6.tar.gz',
+  download_url='https://github.com/rilckztech/rilz-sdk/archive/11.0.7.tar.gz',
   install_requires=[
     'requests',
     'loguru',
