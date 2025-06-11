@@ -28,8 +28,11 @@ class Account(Service):
         api_path = '/account'
         api_params = {}
 
-        return self.client.call('get', api_path, {
+        result = self.client.call('get', api_path, {
         }, api_params)
+        if not isinstance(result, dict):
+            raise RilzException('Unexpected response type')
+        return result
 
     def create(self, user_id: str, email: str, password: str, name: str = None) -> Dict[str, Any]:
         """

@@ -183,9 +183,12 @@ class Databases(Service):
         api_path = api_path.replace('{databaseId}', database_id)
 
 
-        return self.client.call('delete', api_path, {
+        result = self.client.call('delete', api_path, {
             'content-type': 'application/json',
         }, api_params)
+        if not isinstance(result, dict):
+            raise TypeError("Expected result to be of type Dict[str, Any]")
+        return result
 
     def list_collections(self, database_id: str, queries: List[str] = None, search: str = None) -> Dict[str, Any]:
         """

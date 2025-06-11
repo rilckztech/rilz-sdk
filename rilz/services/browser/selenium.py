@@ -19,10 +19,8 @@ from selenium.common.exceptions import (
     TimeoutException,
     InvalidElementStateException,
 )
-try:
-    from rilz import logger
-except ImportError:
-    from loguru import logger
+
+from rilz.logger import logger
 
 from rilz.services.browser.exceptions import WindowNotFound
 
@@ -32,10 +30,10 @@ from typing import Iterator, List, Callable, Any
 import pathlib
 import uuid
 import shutil
-from rilz.vault import Vault
+from rilz.services.vault import Vault
 
 class _Browser:
-    driver: webdriver.Chrome
+    driver: webdriver.Chrome | webdriver.Remote
     driver_wait: WebDriverWait
     actions: ActionChains
 
@@ -121,8 +119,8 @@ class _Browser:
         """Wait until the element is located."""
         while True:
             try:
-                ec = self.__get_condition(ec)
-                return self.driver_wait.until(ec((By.XPATH, xpath)))
+                condition_func = self.__get_condition(ec)
+                return self.driver_wait.until(condition_func((By.XPATH, xpath)))
             except (TimeoutException, NoSuchElementException, StaleElementReferenceException):
                 retry -= 1
                 if retry < 1:
@@ -347,7 +345,7 @@ class _Browser:
         options.add_experimental_option("prefs", prefs)
 
 class Browser(_Browser):
-    def __init__(self, profile: str = None, options: Options = None, vnc: bool = False, session_name:str=None) -> None:
+    def __init__(self, profile: str = None, options: Options = None, vnc: bool = False, session_name:str=None, remote_url: str = '') -> None:
         self.driver = None
         self.driver_wait = None
         self.actions = None
@@ -357,7 +355,7 @@ class Browser(_Browser):
         self.vnc = vnc
         self.options = options
         self.session_name = session_name        
-        self.remote_url = Vault.SELENIUM_HOST if Vault.USE_SELENOID else None
+        self.remote_url = remote_url or os.getenv("REMOTE_BROWSER_URL", "")
         
     
     def start_browser(self):
@@ -375,9 +373,9 @@ class Browser(_Browser):
             profile (str): Nome do perfil a ser utilizado
             options (Options): Opções do navegador
         """        
+        browser_options = options or webdriver.ChromeOptions()
         if not options:
             # Criando as opções do Chrome
-            browser_options = webdriver.ChromeOptions()
 
             # Se um perfil for especificado, define o diretório correto
 
@@ -392,7 +390,7 @@ class Browser(_Browser):
             # browser_options.add_argument("--remote-debugging-pipe")        
             # browser_options.add_argument("--remote-debugging-port=9222")
             if profile:
-                browser_options.add_argument(r"--user-data-dir=C:\Users\rilck\AppData\Local\Google\Chrome\User Data")
+                browser_options.add_argument(r"")
                 browser_options.add_argument(f"--profile-directory={profile}")
 
         service = Service(ChromeDriverManager().install())
