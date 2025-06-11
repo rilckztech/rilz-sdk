@@ -2,3 +2,4 @@ requests==2.31.0
 loguru
 webdriver-manager
 selenium
+hvac
