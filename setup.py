@@ -10,8 +10,8 @@ setuptools.setup(
   packages = [
     'rilz',
     'rilz/services',
-    'rilz/services/vault',
-    'rilz/services/browser',
+    'rilz/vault',
+    'rilz/browser',
     'rilz/encoders',
     'rilz/enums',
   ],
