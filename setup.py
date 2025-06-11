@@ -29,6 +29,7 @@ setuptools.setup(
     'loguru',
     'webdriver-manager',
     'selenium',
+    'hvac',
   ],
   classifiers=[
     'Development Status :: 5 - Production/Stable',
