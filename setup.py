@@ -9,10 +9,10 @@ setuptools.setup(
   name = 'rilz',
   packages = [
     'rilz',
+    'rilz/vault',
     'rilz/services',
     'rilz/encoders',
     'rilz/enums',
-    'rilz/vault',
     'rilz/browser',
   ],
   version = '11.0.7',
