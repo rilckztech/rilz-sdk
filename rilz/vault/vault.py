@@ -2,8 +2,7 @@ import hvac
 from hvac.exceptions import InvalidPath, Forbidden
 import os
 from . import exceptions
-from dataclasses import dataclass, field
-from pydantic import BaseModel, Field, SecretStr, Secret
+from dataclasses import dataclass
 
 VAULT_URL= os.environ.get("VAULT_URL", None)
 if VAULT_URL is None:

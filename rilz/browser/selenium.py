@@ -22,7 +22,7 @@ from selenium.common.exceptions import (
 
 from rilz.logger import logger
 
-from rilz.services.browser.exceptions import WindowNotFound
+from rilz.browser.exceptions import WindowNotFound
 
 import os
 from contextlib import contextmanager
@@ -30,7 +30,6 @@ from typing import Iterator, List, Callable, Any
 import pathlib
 import uuid
 import shutil
-from rilz.services.vault import Vault
 
 class _Browser:
     driver: webdriver.Chrome | webdriver.Remote

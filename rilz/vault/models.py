@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 from pydantic import PrivateAttr
 from .vault import vault
 from rilz.logger import logger
